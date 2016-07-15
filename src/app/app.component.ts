@@ -12,6 +12,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
         <router-outlet></router-outlet>
     `,
     directives: [ROUTER_DIRECTIVES],
+    styleUrls:['app.component.css'],
     providers:[HeroService]
 })
 export class AppComponent {
