@@ -1,41 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import '../../public/css/styles.css';
-import {HeroDetailComponent} from './hero-detail.component'
-import {Hero} from './hero'
+import { Component } from '@angular/core';
 import { HeroService } from './hero.service';
-
-
+import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  directives: [HeroDetailComponent],
-  providers: [HeroService]
-
+    selector:'my-app',
+    template:`
+        <h1>{{title}}</h1>
+        <nav>
+            <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+            <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
+        </nav>
+        <router-outlet></router-outlet>
+    `,
+    directives: [ROUTER_DIRECTIVES],
+    providers:[HeroService]
 })
-export class AppComponent implements OnInit {
-
-  title = 'Tour of Heroes!';
-  heroes: Hero[];
-  selectedHero: Hero;
-  constructor(private heroService: HeroService) {
-
-  }
-  ngOnInit() {
-    this.getHeroes();
-  }
-
-
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
-  }
-
-
-  getHeroes() {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
-
-
+export class AppComponent {
+    title = 'Tour of Heroes'
 }
-
-
